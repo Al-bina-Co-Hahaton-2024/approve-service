@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import ru.albina.approve.dto.request.DoctorChangeDto;
 import ru.albina.approve.dto.response.DoctorChangeResponse;
+import ru.albina.approve.service.doctor.DoctorChangeConfirmationService;
 import ru.albina.approve.service.doctor.DoctorChangeFindService;
 import ru.albina.approve.service.doctor.DoctorChangeRequestService;
 import ru.albina.backlib.configuration.WebConstants;
@@ -26,6 +27,8 @@ public class DoctorChangesController {
     private final DoctorChangeRequestService doctorChangeRequestService;
 
     private final DoctorChangeFindService doctorChangeFindService;
+
+    private final DoctorChangeConfirmationService doctorChangeConfirmationService;
 
 
     @Operation(
@@ -84,5 +87,41 @@ public class DoctorChangesController {
         return this.doctorChangeFindService.getAll(pageable);
     }
 
+
+    @Operation(
+            summary = "Согласовать изменения в карточку сотрудника",
+            security = @SecurityRequirement(name = OpenApiConfiguration.JWT),
+            responses = {
+                    @ApiResponse(
+                            description = "ОК",
+                            responseCode = "200"
+                    )
+            }
+    )
+    //TODO @PreAuthorize("hasAnyRole('ADMIN')")
+    @PostMapping("{id}/approve")
+    public void approve(
+            @PathVariable("id") UUID requestId
+    ) {
+        this.doctorChangeConfirmationService.approve(requestId);
+    }
+
+    @Operation(
+            summary = "Отклонить изменения в карточку сотрудника",
+            security = @SecurityRequirement(name = OpenApiConfiguration.JWT),
+            responses = {
+                    @ApiResponse(
+                            description = "ОК",
+                            responseCode = "200"
+                    )
+            }
+    )
+    //TODO @PreAuthorize("hasAnyRole('ADMIN')")
+    @DeleteMapping("{id}")
+    public void disapprove(
+            @PathVariable("id") UUID requestId
+    ) {
+        this.doctorChangeConfirmationService.disapprove(requestId);
+    }
 
 }

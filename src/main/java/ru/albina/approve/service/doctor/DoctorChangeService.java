@@ -36,9 +36,20 @@ public class DoctorChangeService {
     }
 
 
-
     @Transactional
     public DoctorChangeEntity save(DoctorChangeEntity doctorChangeEntity) {
         return this.doctorChangeRepository.save(doctorChangeEntity);
+    }
+
+    @Transactional(readOnly = true)
+    public DoctorChangeEntity getById(UUID id) {
+        return this.doctorChangeRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Can't find changes by id " + id)
+        );
+    }
+
+    @Transactional
+    public void deleteById(UUID requestId) {
+        this.doctorChangeRepository.deleteById(requestId);
     }
 }
