@@ -5,6 +5,37 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-<!--    <changeSet id="001" author="alexander (bigtows) chapchuk">-->
-<!--    </changeSet>-->
+    <changeSet id="001" author="alexander (bigtows) chapchuk">
+        <createTable tableName="doctor_change">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="doctor_id" type="uuid">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="rate" type="double"/>
+            <column name="modality" type="varchar(30)"/>
+            <column name="optional_modality" type="varchar(30) []"/>
+            <column name="start_contract" type="date"/>
+            <column name="end_contract" type="date"/>
+            <column name="hours" type="double"/>
+            <column name="work_days" type="int"/>
+            <column name="weekend_days" type="int"/>
+        </createTable>
+
+        <createTable tableName="absence_schedule_request">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="doctor_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
