@@ -3,6 +3,7 @@ package ru.albina.approve.dto.request;
 import lombok.Data;
 import ru.albina.approve.domain.Modality;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
@@ -16,6 +17,5 @@ public class DoctorChangeDto {
     private LocalDate startContract;
     private LocalDate endContract;
     private Double hours;
-    private Integer workDays;
-    private Integer weekendDays;
+    private Set<DayOfWeek> workDays;
 }

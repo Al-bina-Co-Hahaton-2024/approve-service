@@ -45,4 +45,11 @@
         <modifyDataType tableName="absence_schedule" columnName="start" newDataType="date"/>
         <modifyDataType tableName="absence_schedule" columnName="end" newDataType="date"/>
     </changeSet>
+    <changeSet id="004" author="alexander (bigtows) chapchuk">
+        <dropColumn tableName="doctor_change" columnName="weekend_days"/>
+        <dropColumn tableName="doctor_change" columnName="work_days"/>
+        <addColumn tableName="doctor_change">
+            <column name="work_days" type="varchar(30) []"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

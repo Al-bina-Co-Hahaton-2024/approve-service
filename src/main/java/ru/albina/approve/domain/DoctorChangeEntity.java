@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -56,11 +57,18 @@ public class DoctorChangeEntity {
     @Column(name = "hours")
     private Double hours;
 
-    @Column(name = "work_days")
-    private Integer workDays;
+    @Type(
+            value = ListArrayType.class,
+            parameters = {
+                    @Parameter(
+                            name = ListArrayType.SQL_ARRAY_TYPE,
+                            value = "varchar"
+                    )
+            }
+    )
+    @Column(name = "work_days", columnDefinition = "_varchar")
+    private List<DayOfWeek> workDays;
 
-    @Column(name = "weekend_days")
-    private Integer weekendDays;
 
 
     @Override

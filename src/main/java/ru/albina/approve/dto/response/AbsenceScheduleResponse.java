@@ -2,7 +2,7 @@ package ru.albina.approve.dto.response;
 
 import lombok.Data;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
@@ -11,7 +11,7 @@ public class AbsenceScheduleResponse {
 
     private UUID doctorId;
 
-    private Instant start;
+    private LocalDate start;
     
-    private Instant end;
+    private LocalDate end;
 }

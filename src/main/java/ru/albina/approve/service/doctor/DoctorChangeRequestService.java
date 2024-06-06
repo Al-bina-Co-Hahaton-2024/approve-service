@@ -28,14 +28,6 @@ public class DoctorChangeRequestService {
 
     private void validate(DoctorChangeEntity doctorChangeEntity) {
         if (
-                Optional.ofNullable(doctorChangeEntity.getWorkDays()).orElse(0) +
-                        Optional.ofNullable(doctorChangeEntity.getWeekendDays()).orElse(0)
-                        > 7
-        ) {
-            throw new IllegalArgumentException("Invalid combination of work and weekends days");
-        }
-
-        if (
                 Optional.ofNullable(doctorChangeEntity.getStartContract()).orElse(LocalDate.MIN)
                         .isAfter(
                                 Optional.ofNullable(doctorChangeEntity.getEndContract()).orElse(LocalDate.MAX)

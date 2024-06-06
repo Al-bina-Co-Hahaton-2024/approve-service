@@ -3,7 +3,7 @@ package ru.albina.approve.dto.request;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
@@ -12,8 +12,8 @@ public class AbsenceScheduleDto {
     private UUID doctorId;
 
     @NotNull
-    private Instant start;
+    private LocalDate start;
 
     @NotNull
-    private Instant end;
+    private LocalDate end;
 }
