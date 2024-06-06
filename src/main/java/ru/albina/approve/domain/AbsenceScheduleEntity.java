@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -27,11 +27,11 @@ public class AbsenceScheduleEntity {
 
     @NotNull
     @Column(name = "start", nullable = false)
-    private Instant start;
+    private LocalDate start;
 
     @NotNull
     @Column(name = "\"end\"", nullable = false)
-    private Instant end;
+    private LocalDate end;
 
 
     @Override

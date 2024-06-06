@@ -41,4 +41,8 @@
     <changeSet id="002" author="alexander (bigtows) chapchuk">
         <renameTable oldTableName="absence_schedule_request" newTableName="absence_schedule"/>
     </changeSet>
+    <changeSet id="003" author="alexander (bigtows) chapchuk">
+        <modifyDataType tableName="absence_schedule" columnName="start" newDataType="date"/>
+        <modifyDataType tableName="absence_schedule" columnName="end" newDataType="date"/>
+    </changeSet>
 </databaseChangeLog>

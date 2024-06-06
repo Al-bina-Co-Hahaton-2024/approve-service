@@ -33,7 +33,7 @@ public class MedicalClient {
 
     public void addAbsenceScheduler(UUID doctorId, AbsenceSchedulerUpdateRequest absenceSchedulerUpdateRequest) {
         this.webClient.patch()
-                .uri(uriBuilder -> uriBuilder.path(WebConstants.FULL_PRIVATE + "/doctors/{id}/absence-schedulers").build(doctorId))
+                .uri(uriBuilder -> uriBuilder.path(WebConstants.FULL_PRIVATE + "/doctors/{id}/absence-schedules").build(doctorId))
                 .bodyValue(absenceSchedulerUpdateRequest)
                 .retrieve()
                 .toBodilessEntity()

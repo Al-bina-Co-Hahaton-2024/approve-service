@@ -2,12 +2,12 @@ package ru.albina.approve.dto.medical;
 
 import lombok.Data;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Data
 public class AbsenceSchedulerUpdateRequest {
 
-    private Instant start;
+    private LocalDate start;
 
-    private Instant end;
+    private LocalDate end;
 }
