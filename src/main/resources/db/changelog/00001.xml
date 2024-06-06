@@ -38,4 +38,7 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="002" author="alexander (bigtows) chapchuk">
+        <renameTable oldTableName="absence_schedule_request" newTableName="absence_schedule"/>
+    </changeSet>
 </databaseChangeLog>

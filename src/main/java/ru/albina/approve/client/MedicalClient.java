@@ -2,6 +2,7 @@ package ru.albina.approve.client;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import ru.albina.approve.dto.medical.AbsenceSchedulerUpdateRequest;
 import ru.albina.approve.dto.medical.DoctorUpdateRequest;
 import ru.albina.backlib.configuration.WebConstants;
 
@@ -24,6 +25,16 @@ public class MedicalClient {
         this.webClient.patch()
                 .uri(uriBuilder -> uriBuilder.path(WebConstants.FULL_PRIVATE + "/doctors/{id}").build(doctorId))
                 .bodyValue(doctorUpdateRequest)
+                .retrieve()
+                .toBodilessEntity()
+                .block();
+    }
+
+
+    public void addAbsenceScheduler(UUID doctorId, AbsenceSchedulerUpdateRequest absenceSchedulerUpdateRequest) {
+        this.webClient.patch()
+                .uri(uriBuilder -> uriBuilder.path(WebConstants.FULL_PRIVATE + "/doctors/{id}/absence-schedulers").build(doctorId))
+                .bodyValue(absenceSchedulerUpdateRequest)
                 .retrieve()
                 .toBodilessEntity()
                 .block();
