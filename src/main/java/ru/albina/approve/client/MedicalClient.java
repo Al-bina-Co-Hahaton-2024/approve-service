@@ -32,7 +32,7 @@ public class MedicalClient {
 
 
     public void addAbsenceScheduler(UUID doctorId, AbsenceSchedulerUpdateRequest absenceSchedulerUpdateRequest) {
-        this.webClient.patch()
+        this.webClient.put()
                 .uri(uriBuilder -> uriBuilder.path(WebConstants.FULL_PRIVATE + "/doctors/{id}/absence-schedules").build(doctorId))
                 .bodyValue(absenceSchedulerUpdateRequest)
                 .retrieve()
