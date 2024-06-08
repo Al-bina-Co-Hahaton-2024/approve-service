@@ -5,6 +5,7 @@ import ru.albina.approve.domain.Modality;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -24,4 +25,6 @@ public class DoctorUpdateRequest {
     private List<Modality> optionalModality;
 
     private Set<DayOfWeek> workDays;
+
+    private LocalTime startWorkDay;
 }

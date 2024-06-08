@@ -52,4 +52,20 @@
             <column name="work_days" type="varchar(30) []"/>
         </addColumn>
     </changeSet>
+    <changeSet id="005" author="alexander (bigtows) chapchuk">
+        <addColumn tableName="doctor_change">
+            <column name="start_work_day" type="TIME WITHOUT TIME ZONE"/>
+        </addColumn>
+        <createTable tableName="doctor_work_schedule">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="doctor_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hours" type="double"/>
+            <column name="work_days" type="varchar(30) []"/>
+            <column name="start_work_day" type="TIME WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
