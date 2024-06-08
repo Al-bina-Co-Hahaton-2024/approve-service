@@ -9,7 +9,9 @@ import ru.albina.approve.domain.DoctorChangeEntity;
 import ru.albina.approve.exception.EntityNotFoundException;
 import ru.albina.approve.repository.DoctorChangeRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -51,5 +53,10 @@ public class DoctorChangeService {
     @Transactional
     public void deleteById(UUID requestId) {
         this.doctorChangeRepository.deleteById(requestId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<DoctorChangeEntity> getAllByIds(Set<UUID> ids) {
+        return this.doctorChangeRepository.findAllById(ids);
     }
 }

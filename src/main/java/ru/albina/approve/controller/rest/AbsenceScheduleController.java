@@ -18,6 +18,7 @@ import ru.albina.backlib.configuration.auto.OpenApiConfiguration;
 import ru.albina.backlib.model.security.LibPrincipal;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Slf4j
@@ -124,6 +125,25 @@ public class AbsenceScheduleController {
             @PathVariable("id") UUID requestId
     ) {
         this.absenceScheduleConfirmationService.disapprove(requestId);
+    }
+
+
+    @Operation(
+            summary = "Найти заявки по ID",
+            security = @SecurityRequirement(name = OpenApiConfiguration.JWT),
+            responses = {
+                    @ApiResponse(
+                            description = "ОК",
+                            responseCode = "200"
+                    )
+            }
+    )
+    //TODO @PreAuthorize("hasAnyRole('ADMIN')")
+    @PostMapping("/find-by-ids")
+    public List<AbsenceScheduleResponse> getAllByIds(
+            @RequestBody Set<UUID> ids
+    ) {
+       return this.absenceScheduleFindService.getAllByIds(ids);
     }
 
 }

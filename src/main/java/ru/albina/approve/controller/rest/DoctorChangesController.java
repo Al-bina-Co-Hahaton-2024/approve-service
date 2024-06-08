@@ -16,6 +16,8 @@ import ru.albina.approve.service.doctor.DoctorChangeRequestService;
 import ru.albina.backlib.configuration.WebConstants;
 import ru.albina.backlib.configuration.auto.OpenApiConfiguration;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Slf4j
@@ -122,6 +124,24 @@ public class DoctorChangesController {
             @PathVariable("id") UUID requestId
     ) {
         this.doctorChangeConfirmationService.disapprove(requestId);
+    }
+
+    @Operation(
+            summary = "Найти заявки по ID",
+            security = @SecurityRequirement(name = OpenApiConfiguration.JWT),
+            responses = {
+                    @ApiResponse(
+                            description = "ОК",
+                            responseCode = "200"
+                    )
+            }
+    )
+    //TODO @PreAuthorize("hasAnyRole('ADMIN')")
+    @PostMapping("/find-by-ids")
+    public List<DoctorChangeResponse> getAllByIds(
+            @RequestBody Set<UUID> ids
+    ) {
+        return this.doctorChangeFindService.getAllByIds(ids);
     }
 
 }

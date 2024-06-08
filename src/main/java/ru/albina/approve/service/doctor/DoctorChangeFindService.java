@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.albina.approve.dto.response.DoctorChangeResponse;
 import ru.albina.approve.mapper.DoctorChangeMapper;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -30,5 +32,10 @@ public class DoctorChangeFindService {
     @Transactional(readOnly = true)
     public Page<DoctorChangeResponse> getAll(Pageable pageable) {
         return this.doctorChangeService.getByAll(pageable).map(doctorChangeMapper::to);
+    }
+
+    @Transactional(readOnly = true)
+    public List<DoctorChangeResponse> getAllByIds(Set<UUID> ids) {
+        return this.doctorChangeService.getAllByIds(ids).stream().map(doctorChangeMapper::to).toList();
     }
 }

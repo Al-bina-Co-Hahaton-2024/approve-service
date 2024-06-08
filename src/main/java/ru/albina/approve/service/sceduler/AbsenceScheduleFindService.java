@@ -9,6 +9,7 @@ import ru.albina.approve.dto.response.AbsenceScheduleResponse;
 import ru.albina.approve.mapper.AbsenceScheduleMapper;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -29,5 +30,10 @@ public class AbsenceScheduleFindService {
     @Transactional(readOnly = true)
     public Page<AbsenceScheduleResponse> getAll(Pageable pageable) {
         return this.absenceScheduleService.getByAll(pageable).map(absenceScheduleMapper::to);
+    }
+
+    @Transactional(readOnly = true)
+    public List<AbsenceScheduleResponse> getAllByIds(Set<UUID> ids) {
+        return this.absenceScheduleService.getAllByIds(ids).stream().map(absenceScheduleMapper::to).toList();
     }
 }

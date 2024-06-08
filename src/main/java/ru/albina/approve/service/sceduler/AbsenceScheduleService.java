@@ -10,6 +10,7 @@ import ru.albina.approve.exception.EntityNotFoundException;
 import ru.albina.approve.repository.AbsenceScheduleRepository;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -45,5 +46,10 @@ public class AbsenceScheduleService {
     @Transactional
     public void deleteById(UUID requestId) {
         this.absenceScheduleRepository.deleteById(requestId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<AbsenceScheduleEntity> getAllByIds(Set<UUID> ids) {
+       return  this.absenceScheduleRepository.findAllById(ids);
     }
 }
