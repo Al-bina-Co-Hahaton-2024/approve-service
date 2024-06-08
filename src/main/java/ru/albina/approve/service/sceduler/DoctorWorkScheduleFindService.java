@@ -7,6 +7,7 @@ import ru.albina.approve.dto.response.DoctorWorkScheduleResponse;
 import ru.albina.approve.mapper.DoctorWorkScheduleMapper;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -21,5 +22,10 @@ public class DoctorWorkScheduleFindService {
     @Transactional(readOnly = true)
     public List<DoctorWorkScheduleResponse> getByDoctorId(UUID doctorId) {
         return this.doctorWorkScheduleService.findAllByDoctorId(doctorId).stream().map(doctorWorkScheduleMapper::to).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<DoctorWorkScheduleResponse> getAllByIds(Set<UUID> ids) {
+        return this.doctorWorkScheduleService.getAllByIds(ids).stream().map(doctorWorkScheduleMapper::to).toList();
     }
 }

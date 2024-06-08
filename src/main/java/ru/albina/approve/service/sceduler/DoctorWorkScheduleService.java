@@ -8,6 +8,7 @@ import ru.albina.approve.exception.EntityNotFoundException;
 import ru.albina.approve.repository.DoctorWorkScheduleRepository;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -37,5 +38,10 @@ public class DoctorWorkScheduleService {
     @Transactional(readOnly = true)
     public List<DoctorWorkScheduleEntity> findAllByDoctorId(UUID doctorId) {
        return this.doctorWorkScheduleRepository.findAllByDoctorId(doctorId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<DoctorWorkScheduleEntity> getAllByIds(Set<UUID> ids) {
+        return this.doctorWorkScheduleRepository.findAllById(ids);
     }
 }
