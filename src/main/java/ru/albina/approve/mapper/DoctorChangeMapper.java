@@ -14,9 +14,13 @@ import java.util.UUID;
 public interface DoctorChangeMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdDate",ignore = true)
+    @Mapping(target = "modifiedDate", ignore = true)
     DoctorChangeEntity update(@MappingTarget DoctorChangeEntity entity, DoctorChangeDto doctorChange);
 
     @Mapping(target = "id", expression = "java(UUID.randomUUID())")
+    @Mapping(target = "createdDate",ignore = true)
+    @Mapping(target = "modifiedDate", ignore = true)
     DoctorChangeEntity from(DoctorChangeDto doctorChange);
 
 

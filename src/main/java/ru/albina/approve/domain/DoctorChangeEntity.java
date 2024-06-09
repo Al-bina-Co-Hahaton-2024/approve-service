@@ -8,9 +8,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
@@ -20,6 +24,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "doctor_change")
+@EntityListeners(AuditingEntityListener.class)
 public class DoctorChangeEntity {
     @Id
     @Column(name = "id", nullable = false)
@@ -72,6 +77,14 @@ public class DoctorChangeEntity {
 
     @Column(name = "start_work_day")
     private LocalTime startWorkDay;
+
+    @Column(name = "created_date", nullable = false, updatable = false)
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @Column(name = "modified_date")
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 
     @Override
     public boolean equals(Object o) {

@@ -1,17 +1,18 @@
 package ru.albina.approve.domain;
 
 import io.hypersistence.utils.hibernate.type.array.ListArrayType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "doctor_work_schedule")
+@EntityListeners(AuditingEntityListener.class)
 public class DoctorWorkScheduleEntity {
     @Id
     @Column(name = "id", nullable = false)
@@ -47,6 +49,14 @@ public class DoctorWorkScheduleEntity {
 
     @Column(name = "start_work_day")
     private LocalTime startWorkDay;
+
+    @Column(name = "created_date", nullable = false, updatable = false)
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @Column(name = "modified_date")
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 
     @Override
     public boolean equals(Object o) {

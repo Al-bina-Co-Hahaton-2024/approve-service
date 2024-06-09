@@ -1,14 +1,15 @@
 package ru.albina.approve.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "absence_schedule")
+@EntityListeners(AuditingEntityListener.class)
 public class AbsenceScheduleEntity {
     @Id
     @Column(name = "id", nullable = false)
@@ -32,6 +34,14 @@ public class AbsenceScheduleEntity {
     @NotNull
     @Column(name = "\"end\"", nullable = false)
     private LocalDate end;
+
+    @Column(name = "created_date", nullable = false, updatable = false)
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @Column(name = "modified_date")
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
 
 
     @Override

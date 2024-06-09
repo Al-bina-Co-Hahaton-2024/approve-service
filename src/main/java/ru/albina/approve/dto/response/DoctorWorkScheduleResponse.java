@@ -3,6 +3,7 @@ package ru.albina.approve.dto.response;
 import lombok.Data;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Set;
 import java.util.UUID;
@@ -17,5 +18,8 @@ public class DoctorWorkScheduleResponse {
     private Set<DayOfWeek> workDays;
 
     private LocalTime startWorkDay;
+
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
 }

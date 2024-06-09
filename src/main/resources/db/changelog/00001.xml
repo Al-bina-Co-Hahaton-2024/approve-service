@@ -68,4 +68,37 @@
             <column name="start_work_day" type="TIME WITHOUT TIME ZONE"/>
         </createTable>
     </changeSet>
+    <changeSet id="006" author="alexander (bigtows) chapchuk">
+        <addColumn tableName="doctor_change">
+            <column name="created_date" type="datetime"/>
+            <column name="modified_date" type="datetime"/>
+        </addColumn>
+        <sql>
+            UPDATE doctor_change SET created_date = NOW(), modified_date = NOW();
+        </sql>
+        <addNotNullConstraint tableName="doctor_change" columnName="created_date"/>
+        <addNotNullConstraint tableName="doctor_change" columnName="modified_date"/>
+
+
+        <addColumn tableName="doctor_work_schedule">
+            <column name="created_date" type="datetime"/>
+            <column name="modified_date" type="datetime"/>
+        </addColumn>
+        <sql>
+            UPDATE doctor_work_schedule SET created_date = NOW(), modified_date = NOW();
+        </sql>
+        <addNotNullConstraint tableName="doctor_work_schedule" columnName="created_date"/>
+        <addNotNullConstraint tableName="doctor_work_schedule" columnName="modified_date"/>
+
+
+        <addColumn tableName="absence_schedule">
+            <column name="created_date" type="datetime"/>
+            <column name="modified_date" type="datetime"/>
+        </addColumn>
+        <sql>
+            UPDATE absence_schedule SET created_date = NOW(), modified_date = NOW();
+        </sql>
+        <addNotNullConstraint tableName="absence_schedule" columnName="created_date"/>
+        <addNotNullConstraint tableName="absence_schedule" columnName="modified_date"/>
+    </changeSet>
 </databaseChangeLog>

@@ -14,9 +14,13 @@ import java.util.UUID;
 public interface AbsenceScheduleMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdDate",ignore = true)
+    @Mapping(target = "modifiedDate", ignore = true)
     AbsenceScheduleEntity update(@MappingTarget AbsenceScheduleEntity entity, AbsenceScheduleDto absenceScheduleDto);
 
     @Mapping(target = "id", expression = "java(UUID.randomUUID())")
+    @Mapping(target = "createdDate",ignore = true)
+    @Mapping(target = "modifiedDate", ignore = true)
     AbsenceScheduleEntity from(AbsenceScheduleDto absenceScheduleDto);
 
 

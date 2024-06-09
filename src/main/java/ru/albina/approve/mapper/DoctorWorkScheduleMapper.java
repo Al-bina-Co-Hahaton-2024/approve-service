@@ -14,6 +14,8 @@ public interface DoctorWorkScheduleMapper {
 
 
     @Mapping(target = "id", expression = "java(UUID.randomUUID())")
+    @Mapping(target = "createdDate",ignore = true)
+    @Mapping(target = "modifiedDate", ignore = true)
     DoctorWorkScheduleEntity from(DoctorWorkScheduleDto doctorWorkScheduleDto);
 
 

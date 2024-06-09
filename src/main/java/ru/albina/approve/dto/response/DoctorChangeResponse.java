@@ -5,6 +5,7 @@ import ru.albina.approve.domain.Modality;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -20,4 +21,9 @@ public class DoctorChangeResponse {
     private LocalDate endContract;
     private Double hours;
     private List<DayOfWeek> workDays;
+
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
+
+
 }
